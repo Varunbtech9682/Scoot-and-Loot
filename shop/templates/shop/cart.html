@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Register</title>
+</head>
+<body style="background: linear-gradient(300deg, rgba(0,0,0,0) -36%, rgb(236, 250, 255) 15%, rgb(250, 240, 143) 100%);">
+    {% extends 'shop/layout/main.html' %}
+    {% block content %}
+        <section class="bg-light py-4 my-5" style="background: linear-gradient(300deg, rgba(0,0,0,0) -36%, rgb(236, 250, 255) 15%, rgb(250, 240, 143) 100%);">
+            <div class="container">
+                <div class="row">
+                    <div class="col-12">
+                        <h4 class="mb-3">Cart Items</h4>
+                    </div>
+                        <table class="table table-bordered">
+                            <tr style="background: linear-gradient(300deg, rgba(0,0,0,0) -36%, rgb(151, 210, 231) 15%, rgba(239, 223, 79, 0.674) 100%);">
+                                <th>Image</th>
+                                <th>Product Name</th>
+                                <th>Unit</th>
+                                <th>Quantity</th>
+                                <th>Amount</th>
+                                <th>Remove</th>
+                            </tr>
+                            {% for item in cart %}
+                            <tr style="background: linear-gradient(300deg, rgba(0,0,0,0) -36%, rgb(151, 210, 231) 15%, rgba(239, 223, 79, 0.621) 100%); text-align: center;">
+                                <td><img src="{{item.product.product_image.url}}" height="75px" alt="{{item.product_name}}"></td>
+                                <td>{{item.product.name}}</td>
+                                <td>{{item.product.selling_price | stringformat:'d'}}</td>
+                                <td>{{item.product_qty}}</td>
+                                <td class="amt">{{item.total_cost | stringformat:'d'}}</td>
+                                <td><a href="{% url 'remove_cart' item.id %}" onclick="return confirm('Are you sure? to Remove')" class="btn btn-sm" style="background-color: #E4DD62;"><i class="fa fa-trash"></i>Remove</button></td>
+                            </tr>
+                            {% endfor %}
+                            <tr style="background: linear-gradient(300deg, rgba(0,0,0,0) -36%, rgb(151, 210, 231) 15%, rgba(239, 223, 79, 0.509) 100%);">
+                                <td></td>
+                                <td></td>
+                                <td colspan="2"><b>Total Amount</b></td>
+                                <td id="net" colspan="2">0</td>
+                            </tr>
+                        </table>
+        </section>
+
+        <script>
+            const nodes=document.querySelectorAll('.amt');
+            const arr=Array.from(nodes)
+            const res=arr.reduce((acc, curr)=>{
+                return acc += Number(curr.textContent)
+            }, 0);
+            document.getElementById("net").innerHTML="Rs : "+res
+        </script>
+    {% endblock content %}
+</body>
+</html>

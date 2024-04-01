@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Online index</title>
+</head>
+<body style="background: linear-gradient(180deg, rgba(0,0,0,1) -16%, rgba(0,255,217,1) 38%, rgba(0,255,218,1) 100%);">
+    {% extends 'shop/layout/main.html' %}
+    
+    {% block content %}
+    <section class="bg-light py-4 my-5" style="background: linear-gradient(180deg, rgba(0,0,0,1) -16%, rgba(0,255,217,1) 38%, rgba(0,255,218,1) 100%);">
+        <div class="container" >
+            <div class="row">
+                <div class="col-12">
+                    <h4 class="mb-3">Awesome Products</h4>
+                    <hr style="border-color:antiquewhite;">
+                    {% include 'shop/inc/message.html' %}
+                </div>
+                {% for item in products %}
+                    <div class="col-md-4 col-lg-3">
+                        <div class="card my-3" style="background: linear-gradient(5deg, rgba(0,0,0,1) -100%, rgba(51,249,220,1) 51%, rgba(0,255,218,1) 100%); border-radius: 10px;">
+                           <img src="{{item.product_image.url}}" class="card-image-top" alt="categories" style="height: 250px; width: 255px;">
+                           <a href="{% url 'product_details' category_name item.name %}">
+                            <div class="card-body">
+                                <h5 class="card-title text-primary">{{item.name}}</h5>
+                                <p class="card-text">
+                                    <span class="float-start old_price"><s>Rs:{{item.original_price | stringformat:'d'}}</s></span>
+                                    <span class="float-end new_price">Rs: {{item.selling_price | stringformat:'d'}}</span>
+                                    <br>
+                                </p> 
+                            </div>
+                           </a>
+                        </div>
+                   </div>
+                   {% endfor %}
+            </div>
+        </div>
+    </section>
+       
+    {% endblock content %}
+   
+</body>
+</html>

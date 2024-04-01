@@ -1,0 +1,79 @@
+@import url('https://fonts.googleapis.com/css2?family=Hammersmith+One&display=swap');
+
+html{
+    font-size:14px;
+}
+
+body{
+    font-family: "Hammersmith One", sans-serif;
+}
+
+a{
+    text-decoration: none;
+}
+
+
+
+.carousel-item img {
+    object-fit: cover;
+    height: calc(88vh - 340px); /* Adjusted height to account for the top margin */
+    margin-top: 45px; /* Move the image up by 200px */
+    overflow: hidden;
+}
+
+
+  
+
+.old_price{
+    font-weight: bold;
+    color: red;
+
+}
+
+.new_price{
+    font-weight: bold;
+    background-color: green;
+    color: white;
+    padding:0px 5px 0px 5px;
+    border-radius: 4px;
+}
+
+.pic-box{
+    position: relative;
+
+}
+
+.hot{
+    background-color: orangered;
+    color: white;
+    width: 75px;
+    text-align: center;
+    font-weight: bold;
+    display: inline;
+    border-radius: 5px;
+    padding: 5px;
+    z-index: 1;
+    position: absolute;
+    top: 0;
+    right: 20px;
+
+
+}
+
+
+/* .with-blur {
+    position: relative; /* Allows absolute positioning of the overlay */
+}
+  
+.with-blur::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 150px; /* Adjust this value for the blur amount */
+    background: linear-gradient(to bottom, #212529, transparent); /* Creates a black to transparent gradient for the blur effect */
+} */
+  
+
+

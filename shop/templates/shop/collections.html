@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Register</title>
+</head>
+<body style="background: linear-gradient(5deg, rgba(0,0,0,1) -100%, rgba(51,249,220,1) 51%, rgba(0,255,218,1) 100%);">
+    {% extends 'shop/layout/main.html' %}
+    {% block content %}
+        <section class="py-2 text-center container"  style="margin-top: 70px;"">
+            <div class="row py-lg-5">
+                <div class="col-lg-6 col-md-8 mx-auto">
+                    <h1 class="fw-light">Best Sellers</h1>
+                    <p class="lead text-muted">Our Most Popular Products based on sales, Updated hourly.</p>
+                    <p>
+                        <a href="{% url 'login' %}" class="btn btn-info my-2 px-4">Login</a>
+                        <a href="{% url 'register' %}" class="btn btn-warning my-2">Register</a>
+                    </p>
+                </div>
+            </div>
+        </section>
+        <section class="py-2 my-2" style="background: linear-gradient(5deg, rgba(0,0,0,1) -100%, rgba(51,249,220,1) 51%, rgba(0,255,218,1) 100%);">
+            <div class="container" style="background-color: #5ffde6;">
+                <div class="row" style="background: linear-gradient(5deg, rgba(0,0,0,1) -100%, rgba(51,249,220,1) 51%, rgba(0,255,218,1) 100%);">
+                    <div class="col-12">
+                        <h4 class="mb-3">Categories</h4>
+                        <hr style="border-color: antiquewhite;">
+                        {% include 'shop/inc/message.html' %}
+                    </div>
+
+                        {% for item in category %}
+                        <div class="col-md-4 col-lg-3" style="text-align: center;">
+                            <div class="card my-3" style="background: linear-gradient(5deg, rgba(0,0,0,1) -100%, rgba(51,249,220,1) 51%, rgb(144, 255, 165) 100%);">
+                            <img src="{{item.image.url}}" class="card-image-top" alt="categories" style="height: 250px; width: 307px;">
+                            <a href="{% url 'collections' item.name %}">
+                                <div class="card-body" style="background: linear-gradient(180deg, rgba(0,0,0,0) -36%, rgba(42,208,176,1) 42%, rgba(101,219,162,1) 70%);">
+                                    <h5 class="card-title text-dark">{{item.name}}</h5>
+                                    <p class="card-text text-success">{{item.description}}</p> 
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+        </section>
+    {% endblock content %}
+</body>
+</html>
